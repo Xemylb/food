@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Dish } from '../models/Dish';
 
@@ -14,11 +14,20 @@ import { DishesService } from '../dishes.service';
 export class DishesEditComponent implements OnInit {
   dish$: Observable<Dish>
 
-  constructor(private route: ActivatedRoute, private dishesService: DishesService) { }
+  constructor(
+     private route: ActivatedRoute,
+     private disherService: DishesService,
+     private router: Router
+    ) { }
 
   ngOnInit() {
     this.dish$ = this.route.paramMap
-      .switchMap((param: ParamMap) => this.dishesService.get(+param.get('id')))
+      .switchMap((params: ParamMap) => this.disherService.getDish(+params.get('id')))
   }
 
+
+onSaveDish(dish: Dish){
+  this.disherService.updateDish(dish)
+      .subscribe(() => this.router.navigate(['../../../dishes'], {relativeTo: this.route}))
+}
 }

@@ -1,3 +1,4 @@
 <p>
   dishes-edit works!
 </p>
+<app-dishes-form [dish]='dish$ | async' (saveDish)='onSaveDish($event)'></app-dishes-form>

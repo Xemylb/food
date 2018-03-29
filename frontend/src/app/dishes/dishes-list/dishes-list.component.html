@@ -1,9 +1,12 @@
 
 <ul>
   <li *ngFor="let dish of list$ | async">
-    <a [routerLink]="['./edit', dish.id]">Edit</a>
+   <button (click)='editDish(dish.id)'>Edit Dish</button>
+   <button (click)='deleteDish($event, dish.id)'>Delete Dish</button>
     {{dish.title}}
   </li>
 </ul>
 
-<a routerLink="./add">Add</a>
+<button (click)='addDish()'>Add Dish</button>
+
+

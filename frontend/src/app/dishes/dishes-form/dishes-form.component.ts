@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Dish } from '../models/Dish';
 
 @Component({
   selector: 'app-dishes-form',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dishes-form.component.css']
 })
 export class DishesFormComponent implements OnInit {
-
+@Input() dish: Dish;
+@Output() saveDish = new EventEmitter<Dish>()
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit($event){
+    $event.preventDefault();
+    this.saveDish.emit(this.dish)
+  }
 }

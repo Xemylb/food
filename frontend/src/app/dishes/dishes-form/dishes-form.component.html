@@ -1,3 +1,8 @@
-<p>
-  dishes-form works!
-</p>
+<form (submit)="onSubmit($event)" *ngIf='dish'>
+  <input type="text" name='title' [(ngModel)]='dish.title'> 
+  <input type="text" name='price' [(ngModel)]='dish.price'> 
+  <input type='checkbox' name='available' [(ngModel)]='dish.available'>
+
+<button>Save</button>
+
+</form>
