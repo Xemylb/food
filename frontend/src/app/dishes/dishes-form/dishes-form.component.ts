@@ -14,7 +14,8 @@ export class DishesFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit($event){
+  onSubmit($event, val){
+    console.log('val', val)
     $event.preventDefault();
     this.saveDish.emit(this.dish)
   }
