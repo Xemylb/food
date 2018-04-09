@@ -19,9 +19,16 @@ var disher = [
     {id: 35, title: 'Макароны', price: 12, available: true},
 ];
 
+const dbConnection = require('../db');
+
 class DishesModel{
     getList(){
-        return disher;
+        return new Promise((resolve, reject)=> {
+            dbConnection.query('SELECT * FROM dishes', (err, result) => {
+                err ? reject(err)
+                  : resolve(result)
+              })
+        })
     }
 
     getOne(id){

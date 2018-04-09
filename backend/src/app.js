@@ -6,6 +6,16 @@ const routes = require('./routes');
 const cors = require('cors');
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const dbConnection = require('./db');
+
+dbConnection.connect();
+
+dbConnection.query('SELECT * FROM dishes', (err, result) => {
+  err ? 
+      console.log('ERROR', err)
+    : console.log('SUCCESS', result)
+})
+
 
 app.use(cors());
 app.use(bodyParser.json());

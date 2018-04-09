@@ -8,8 +8,11 @@ class DishesController {
 
     list(req, res) {
         console.log('got request for dishes');
-
-        res.json(dishesModel.getList());
+        
+        
+        dishesModel.getList()
+            .then(result => res.json(result))
+            .catch(err => res.status(400).send())
     }
 
     get(req, res) {

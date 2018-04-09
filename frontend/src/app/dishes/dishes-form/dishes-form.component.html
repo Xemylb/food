@@ -1,11 +1,12 @@
-<form #form="ngForm" (submit)="onSubmit($event, form)" *ngIf='dish'>
-  <input type="text" id="title" name='title' [(ngModel)]='dish.title' minlength="4" required #title="ngModel">
+<form #form="ngForm" (submit)="onSubmit($event, form.value)" *ngIf='dish'>
+  {{dish.title}}
+  <input type="text" id="title" name='title' [ngModel]="dish.title" minlength="4" required #title="ngModel">
   <span *ngIf="title.dirty && title.errors?.required">This field is Required</span>
   <span *ngIf="title.dirty && title.errors?.minlength">This field is too short</span>
   
-  <input type="text" name='price' [(ngModel)]='dish.price'> 
-  <input type='checkbox' name='available' [(ngModel)]='dish.available'>
+  <input type="text" name='price' [ngModel]='dish.price'> 
+  <input type='checkbox' name='available' ngModel [ngModel]='dish.available'>
 
-<button [disabled]="">Save</button>
+<button [disabled]="form.invalid">Save</button>
 
 </form>

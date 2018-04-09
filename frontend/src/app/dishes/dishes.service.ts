@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Dish } from './models/Dish';
 
-const disher_url = "http://localhost:3000/api/dishes";
+import { environment } from '../../environments/environment';
+
+const disher_url = environment.apiUrl + "/api/dishes";
 
 @Injectable()
 export class DishesService {
